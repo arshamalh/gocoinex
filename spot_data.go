@@ -1,6 +1,8 @@
 package gocoinex
 
-import "net/http"
+import (
+	"net/http"
+)
 
 type SpotDataClient struct {
 	client *http.Client
@@ -10,9 +12,18 @@ func NewSpotDataClient() *SpotDataClient {
 	return &SpotDataClient{client: &http.Client{}}
 }
 
+func (c *SpotDataClient) get(endpoint string) (*http.Response, error) {
+	request, err := http.NewRequest("GET", BaseURL+endpoint, nil)
+	if err != nil {
+		return nil, err
+	}
+	request.Header.Set("User-Agent", UserAgent)
+	return c.client.Do(request)
+}
+
 // Get all market list, applicable to spot and margin markets.
 func (c *SpotDataClient) GetAllMarketList() (*AllMarketList, error) {
-	raw_response, err := c.client.Get(BaseURL + "market/list")
+	raw_response, err := c.get("market/list")
 	if err != nil {
 		return nil, err
 	}
@@ -21,7 +32,13 @@ func (c *SpotDataClient) GetAllMarketList() (*AllMarketList, error) {
 
 // Acquire all market details,
 // applicable to spot and margin markets.
-func (c *SpotDataClient) GetAllMarketInfo() {}
+func (c *SpotDataClient) GetAllMarketInfo() (*AllMarketInfo, error) {
+	raw_response, err := c.get("market/info")
+	if err != nil {
+		return nil, err
+	}
+	return (&AllMarketInfo{}).Parse(raw_response)
+}
 
 // Get detailed information on a single spot or margin market,
 func (c *SpotDataClient) GetSingleMarketInfo() {}
