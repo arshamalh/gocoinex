@@ -1,0 +1,3 @@
+package gocoinex
+
+func NewFutureAccountClient() {}
