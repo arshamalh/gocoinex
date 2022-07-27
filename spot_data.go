@@ -41,7 +41,13 @@ func (c *SpotDataClient) GetAllMarketInfo() (*AllMarketInfo, error) {
 }
 
 // Get detailed information on a single spot or margin market,
-func (c *SpotDataClient) GetSingleMarketInfo() {}
+func (c *SpotDataClient) GetSingleMarketInfo() (*SingleMarketInfo, error) {
+	raw_response, err := c.get("market/detail")
+	if err != nil {
+		return nil, err
+	}
+	return (&SingleMarketInfo{}).Parse(raw_response)
+}
 
 // Acquire market depth in a single spot or margin market,
 // Max. depth 50
