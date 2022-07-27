@@ -1,6 +1,7 @@
 package gocoinex
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -50,8 +51,20 @@ func (c *SpotDataClient) GetSingleMarketInfo() (*SingleMarketInfo, error) {
 }
 
 // Acquire market depth in a single spot or margin market,
-// Max. depth 50
-func (c *SpotDataClient) GetMarketDepth() {}
+// Max depth: 50
+//
+// Sample depth options:
+// "10", "0", "0.01", "0.001", "0.00000001"
+//
+// Limits: 5/10/20/50
+func (c *SpotDataClient) GetMarketDepth(market, depth string, limit int) (*MarketDepth, error) {
+	route := fmt.Sprintf("market/depth?market=%s&merge=%s&limit=%d", market, depth, limit)
+	raw_response, err := c.get(route)
+	if err != nil {
+		return nil, err
+	}
+	return (&MarketDepth{}).Parse(raw_response)
+}
 
 // Get the latest transaction data of a single spot or margin market,
 // Max return of 1000 records
