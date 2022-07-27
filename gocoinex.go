@@ -10,10 +10,14 @@ const (
 	UserAgent = "gocoinex"
 )
 
-type MaintenanceInformation struct {
+type GeneralResponse struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`
-	Data    struct {
+}
+
+type MaintenanceInformation struct {
+	GeneralResponse
+	Data struct {
 		StartTime int    `json:"start_time"` // Integer Maintenance start time
 		EndTime   int    `json:"end_time"`   // Integer Maintenance end time
 		URL       string `json:"url"`        // URL for maintenance announcement
@@ -21,9 +25,8 @@ type MaintenanceInformation struct {
 }
 
 type PartialMaintenanceInfo struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
-	Data    struct {
+	GeneralResponse
+	Data struct {
 		StartedAt int      `json:"started_at"` // Integer Maintenance start time
 		EndedAt   int      `json:"ended_at"`   // Integer Maintenance end time
 		Scope     []string `json:"scope"`      // Maintenance scope: PERPETUAL, SPOT.
