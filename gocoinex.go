@@ -3,6 +3,8 @@ package gocoinex
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
+	"time"
 )
 
 const (
@@ -15,11 +17,27 @@ type GeneralResponse struct {
 	Message string `json:"message"`
 }
 
+type Time struct {
+	time.Time
+}
+
+func (t *Time) UnmarshalJSON(data []byte) error {
+	// Ignore null, like in the main JSON package.
+	if string(data) == "null" || string(data) == `""` {
+		return nil
+	}
+	// Fractional seconds are handled implicitly by Parse.
+	i, err := strconv.ParseInt(string(data), 10, 64)
+	update := time.UnixMilli(i)
+	*t = Time{update}
+	return err
+}
+
 type MaintenanceInformation struct {
 	GeneralResponse
 	Data struct {
-		StartTime int    `json:"start_time"` // Integer Maintenance start time
-		EndTime   int    `json:"end_time"`   // Integer Maintenance end time
+		StartTime Time   `json:"start_time"` // Integer Maintenance start time
+		EndTime   Time   `json:"end_time"`   // Integer Maintenance end time
 		URL       string `json:"url"`        // URL for maintenance announcement
 	}
 }
@@ -27,8 +45,8 @@ type MaintenanceInformation struct {
 type PartialMaintenanceInfo struct {
 	GeneralResponse
 	Data struct {
-		StartedAt int      `json:"started_at"` // Integer Maintenance start time
-		EndedAt   int      `json:"ended_at"`   // Integer Maintenance end time
+		StartedAt Time     `json:"started_at"` // Integer Maintenance start time
+		EndedAt   Time     `json:"ended_at"`   // Integer Maintenance end time
 		Scope     []string `json:"scope"`      // Maintenance scope: PERPETUAL, SPOT.
 	}
 }
