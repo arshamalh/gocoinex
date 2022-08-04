@@ -3,6 +3,7 @@ package gocoinex
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 )
 
 type SpotDataClient struct {
@@ -13,8 +14,19 @@ func NewSpotDataClient() *SpotDataClient {
 	return &SpotDataClient{client: &http.Client{}}
 }
 
-func (c *SpotDataClient) get(endpoint string) (*http.Response, error) {
-	request, err := http.NewRequest("GET", BaseURL+endpoint, nil)
+func (c *SpotDataClient) get(endpoint string, params Map) (*http.Response, error) {
+	route, err := url.Parse(BaseURL + endpoint)
+	query := route.Query()
+	if err != nil {
+		return nil, err
+	}
+	if params != nil {
+		for k, v := range params {
+			query.Set(k, fmt.Sprintf("%v", v))
+		}
+		route.RawQuery = query.Encode()
+	}
+	request, err := http.NewRequest("GET", route.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +36,7 @@ func (c *SpotDataClient) get(endpoint string) (*http.Response, error) {
 
 // Get all market list, applicable to spot and margin markets.
 func (c *SpotDataClient) GetAllMarketList() (*AllMarketList, error) {
-	raw_response, err := c.get("market/list")
+	raw_response, err := c.get("market/list", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -34,16 +46,18 @@ func (c *SpotDataClient) GetAllMarketList() (*AllMarketList, error) {
 // Acquire all market details,
 // applicable to spot and margin markets.
 func (c *SpotDataClient) GetAllMarketInfo() (*AllMarketInfo, error) {
-	raw_response, err := c.get("market/info")
+	raw_response, err := c.get("market/info", nil)
 	if err != nil {
 		return nil, err
 	}
 	return (&AllMarketInfo{}).Parse(raw_response)
 }
 
-// Get detailed information on a single spot or margin market,
-func (c *SpotDataClient) GetSingleMarketInfo() (*SingleMarketInfo, error) {
-	raw_response, err := c.get("market/detail")
+// Get detailed information on a single spot or margin market.
+func (c *SpotDataClient) GetSingleMarketInfo(market string) (*SingleMarketInfo, error) {
+	raw_response, err := c.get("market/detail", Map{
+		"market": market,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -58,8 +72,11 @@ func (c *SpotDataClient) GetSingleMarketInfo() (*SingleMarketInfo, error) {
 //
 // Limits: 5/10/20/50
 func (c *SpotDataClient) GetMarketDepth(market, depth string, limit int) (*MarketDepth, error) {
-	route := fmt.Sprintf("market/depth?market=%s&merge=%s&limit=%d", market, depth, limit)
-	raw_response, err := c.get(route)
+	raw_response, err := c.get("market/depth", Map{
+		"market": market,
+		"merge":  depth,
+		"limit":  limit,
+	})
 	if err != nil {
 		return nil, err
 	}

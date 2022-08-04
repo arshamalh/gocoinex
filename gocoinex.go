@@ -33,6 +33,8 @@ func (t *Time) UnmarshalJSON(data []byte) error {
 	return err
 }
 
+type Map map[string]interface{}
+
 type MaintenanceInformation struct {
 	GeneralResponse
 	Data struct {
