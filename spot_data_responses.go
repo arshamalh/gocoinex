@@ -97,3 +97,89 @@ func (r *MarketDepth) Parse(raw_response *http.Response) (*MarketDepth, error) {
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+// SingleMarketStatistics
+type SingleMarketStatistics struct {
+	GeneralResponse
+	Data TickerData
+}
+
+type Float64 float64
+
+func (f *Float64) UnmarshalJSON(data []byte) error {
+	if string(data) == "null" || string(data) == `""` {
+		return nil
+	}
+	var f64 string
+	if err := json.Unmarshal(data, &f64); err != nil {
+		return err
+	}
+	value, err := strconv.ParseFloat(f64, 64)
+	if err != nil {
+		return err
+	}
+	*f = Float64(value)
+	return nil
+}
+
+/// TODO: Convert strings to float64
+type TickerData struct {
+	ServerTime Time    `json:"date"`        // server time when returning
+	Bid1Price  float64 `json:"buy"`         // First bid price
+	Bid1Amount float64 `json:"buy_amount"`  // First bid amount
+	Ask1Price  float64 `json:"sell"`        // First ask price
+	Ask1Amount float64 `json:"sell_amount"` // First ask amount
+	Open       float64 `json:"open"`        // 24H opening price
+	Close      float64 `json:"last"`        // Latest transaction price
+	High       float64 `json:"high"`        // 24H highest price
+	Low        float64 `json:"low"`         // 24H lowest price
+	Volume     float64 `json:"vol"`         // 24H volume
+}
+
+func (t *TickerData) UnmarshalJSON(data []byte) error {
+	// Ignore null, like in the main JSON package.
+	if string(data) == "null" || string(data) == `""` {
+		return nil
+	}
+	var realTicker struct {
+		ServerTime Time `json:"date"` // server time when returning
+		Ticker     struct {
+			Bid1Price  Float64 `json:"buy"`         // First bid price
+			Bid1Amount Float64 `json:"buy_amount"`  // First bid amount
+			Ask1Price  Float64 `json:"sell"`        // First ask price
+			Ask1Amount Float64 `json:"sell_amount"` // First ask amount
+			Open       Float64 `json:"open"`        // 24H opening price
+			Close      Float64 `json:"last"`        // Latest transaction price
+			High       Float64 `json:"high"`        // 24H highest price
+			Low        Float64 `json:"low"`         // 24H lowest price
+			Volume     Float64 `json:"vol"`         // 24H volume
+		} `json:"ticker"` // Ticker data
+	}
+	if err := json.Unmarshal(data, &realTicker); err != nil {
+		return err
+	}
+
+	*t = TickerData{
+		ServerTime: realTicker.ServerTime,
+		Bid1Price:  float64(realTicker.Ticker.Bid1Price),
+		Bid1Amount: float64(realTicker.Ticker.Bid1Amount),
+		Ask1Price:  float64(realTicker.Ticker.Ask1Price),
+		Ask1Amount: float64(realTicker.Ticker.Ask1Amount),
+		Open:       float64(realTicker.Ticker.Open),
+		Close:      float64(realTicker.Ticker.Close),
+		High:       float64(realTicker.Ticker.High),
+		Low:        float64(realTicker.Ticker.Low),
+		Volume:     float64(realTicker.Ticker.Volume),
+	}
+
+	return nil
+}
+
+func (r *SingleMarketStatistics) Parse(raw_response *http.Response) (*SingleMarketStatistics, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, err
+}

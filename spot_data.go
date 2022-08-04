@@ -92,7 +92,15 @@ func (c *SpotDataClient) GetLatestTransactionData() {}
 func (c *SpotDataClient) GetKLineData() {}
 
 // Get statistics on a single spot or margin market,
-func (c *SpotDataClient) GetSingleMarketStatistics() {}
+func (c *SpotDataClient) GetSingleMarketStatistics(market string) (*SingleMarketStatistics, error) {
+	raw_response, err := c.get("market/ticker", Map{
+		"market": market,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return (&SingleMarketStatistics{}).Parse(raw_response)
+}
 
 // Get all market statistics, applicable to spot and margin markets.
 func (c *SpotDataClient) GetAllMarketStatistics() {}
