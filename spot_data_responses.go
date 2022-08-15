@@ -251,3 +251,12 @@ func (r *AMMMarketList) Parse(raw_response *http.Response) (*AMMMarketList, erro
 	defer raw_response.Body.Close()
 	return r, nil
 }
+
+func (r *MarginMarketList) Parse(raw_response *http.Response) (*MarginMarketList, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
+}
