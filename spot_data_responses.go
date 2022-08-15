@@ -233,3 +233,12 @@ func (r *CurrencyRate) Parse(raw_response *http.Response) (*CurrencyRate, error)
 	defer raw_response.Body.Close()
 	return r, nil
 }
+
+func (r *AssetAllocation) Parse(raw_response *http.Response) (*AssetAllocation, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
+}
