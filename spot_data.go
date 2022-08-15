@@ -120,9 +120,14 @@ func (c *SpotDataClient) GetCurrencyRate() (*CurrencyRate, error) {
 	return (*CurrencyRate{}).Parse(raw_response)
 }
 
-// GET /common/asset/config
 // Get all asset allocation
-func (c *SpotDataClient) GetAssetAllocation() {}
+func (c *SpotDataClient) GetAssetAllocation() (*SpotDataClient, error) {
+	raw_response, err := c.get("common/asset/config", Map{})
+	if err != nil {
+		return nil, err
+	}
+	return (*SpotDataClient{}).Parse(raw_response)
+}
 
 // GET /amm/market
 // Get the list of AMM markets
