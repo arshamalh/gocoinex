@@ -138,6 +138,11 @@ func (c *SpotDataClient) GetAMMMarketList() (*AMMMarketList, error) {
 	return (*SpotDataClient{}).Parse(raw_response)
 }
 
-// GET /margin/market
 // Get the list of margin markets
-func (c *SpotDataClient) GetMarginMarketList() {}
+func (c *SpotDataClient) GetMarginMarketList() (*MarginMarketList, error) {
+	raw_response, err := c.get("margin/market", Map{})
+	if err != nil {
+		return nil, err
+	}
+	return (*MarginMarketList{}).Parse(raw_response)
+}
