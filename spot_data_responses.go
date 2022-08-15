@@ -110,6 +110,17 @@ type AllMarketStatistics struct {
 	Data TickerData
 }
 
+// CurrencyRate
+type CurrencyRate struct {
+	GeneralResponse
+	Data TickerData
+}
+
+// AssetAllocation
+type AssetAllocation struct {
+	GeneralResponse
+	Data TickerData
+}
 type Float64 float64
 
 func (f *Float64) UnmarshalJSON(data []byte) error {

@@ -6,6 +6,8 @@ import (
 	"net/url"
 )
 
+// SpotDataClient
+
 type SpotDataClient struct {
 	client *http.Client
 }
@@ -121,12 +123,12 @@ func (c *SpotDataClient) GetCurrencyRate() (*CurrencyRate, error) {
 }
 
 // Get all asset allocation
-func (c *SpotDataClient) GetAssetAllocation() (*SpotDataClient, error) {
+func (c *SpotDataClient) GetAssetAllocation() (*AssetAllocation, error) {
 	raw_response, err := c.get("common/asset/config", Map{})
 	if err != nil {
 		return nil, err
 	}
-	return (*SpotDataClient{}).Parse(raw_response)
+	return (&AssetAllocation{}).Parse(raw_response)
 }
 
 // Get the list of AMM markets
