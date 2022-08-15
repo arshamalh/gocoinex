@@ -121,6 +121,12 @@ type AssetAllocation struct {
 	GeneralResponse
 	Data TickerData
 }
+
+// AMMMarketList
+type AMMMarketList struct {
+	GeneralResponse
+	Data TickerData
+}
 type Float64 float64
 
 func (f *Float64) UnmarshalJSON(data []byte) error {

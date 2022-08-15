@@ -137,7 +137,7 @@ func (c *SpotDataClient) GetAMMMarketList() (*AMMMarketList, error) {
 	if err != nil {
 		return nil, err
 	}
-	return (*SpotDataClient{}).Parse(raw_response)
+	return (&AMMMarketList{}).Parse(raw_response)
 }
 
 // Get the list of margin markets
