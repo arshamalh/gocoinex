@@ -129,9 +129,14 @@ func (c *SpotDataClient) GetAssetAllocation() (*SpotDataClient, error) {
 	return (*SpotDataClient{}).Parse(raw_response)
 }
 
-// GET /amm/market
 // Get the list of AMM markets
-func (c *SpotDataClient) GetAMMMarketList() {}
+func (c *SpotDataClient) GetAMMMarketList() (*AMMMarketList, error) {
+	raw_response, err := c.get("amm/market", Map{})
+	if err != nil {
+		return nil, err
+	}
+	return (*SpotDataClient{}).Parse(raw_response)
+}
 
 // GET /margin/market
 // Get the list of margin markets
