@@ -146,5 +146,5 @@ func (c *SpotDataClient) GetMarginMarketList() (*MarginMarketList, error) {
 	if err != nil {
 		return nil, err
 	}
-	return (*MarginMarketList{}).Parse(raw_response)
+	return (&MarginMarketList{}).Parse(raw_response)
 }
