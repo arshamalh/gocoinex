@@ -104,6 +104,12 @@ type SingleMarketStatistics struct {
 	Data TickerData
 }
 
+// AllMarketStatistics
+type AllMarketStatistics struct {
+	GeneralResponse
+	Data TickerData
+}
+
 type Float64 float64
 
 func (f *Float64) UnmarshalJSON(data []byte) error {
