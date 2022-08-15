@@ -108,7 +108,7 @@ func (c *SpotDataClient) GetAllMarketStatistics() (*AllMarketStatistics, error) 
 	if err != nil {
 		return nil, err
 	}
-	return (*AllMarketStatistics{}).Parse(raw_response)
+	return (&AllMarketStatistics{}).Parse(raw_response)
 }
 
 // Get the exchange rate of all cryptocurrencies to USD
@@ -117,7 +117,7 @@ func (c *SpotDataClient) GetCurrencyRate() (*CurrencyRate, error) {
 	if err != nil {
 		return nil, err
 	}
-	return (*CurrencyRate{}).Parse(raw_response)
+	return (&CurrencyRate{}).Parse(raw_response)
 }
 
 // Get all asset allocation
