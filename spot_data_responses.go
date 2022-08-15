@@ -181,5 +181,5 @@ func (r *SingleMarketStatistics) Parse(raw_response *http.Response) (*SingleMark
 		return nil, err
 	}
 	defer raw_response.Body.Close()
-	return r, err
+	return r, nil
 }
