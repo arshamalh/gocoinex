@@ -127,6 +127,13 @@ type AMMMarketList struct {
 	GeneralResponse
 	Data TickerData
 }
+
+// MarginMarketList
+type MarginMarketList struct {
+	GeneralResponse
+	Data TickerData
+}
+
 type Float64 float64
 
 func (f *Float64) UnmarshalJSON(data []byte) error {
@@ -199,6 +206,15 @@ func (t *TickerData) UnmarshalJSON(data []byte) error {
 }
 
 func (r *SingleMarketStatistics) Parse(raw_response *http.Response) (*SingleMarketStatistics, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
+}
+
+func (r *AllMarketStatistics) Parse(raw_response *http.Response) (*AllMarketStatistics, error) {
 	err := json.NewDecoder(raw_response.Body).Decode(r)
 	if err != nil {
 		return nil, err
