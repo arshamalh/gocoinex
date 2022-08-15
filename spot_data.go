@@ -103,7 +103,13 @@ func (c *SpotDataClient) GetSingleMarketStatistics(market string) (*SingleMarket
 }
 
 // Get all market statistics, applicable to spot and margin markets.
-func (c *SpotDataClient) GetAllMarketStatistics() {}
+func (c *SpotDataClient) GetAllMarketStatistics() (*AllMarketStatistics, error) {
+	raw_response, err := c.get("market/ticker/all", Map{})
+	if err != nil {
+		return nil, err
+	}
+	return (*AllMarketStatistics{}).Parse(raw_response)
+}
 
 // GET /common/currency/rate
 // Get the exchange rate of all cryptocurrencies to USD
