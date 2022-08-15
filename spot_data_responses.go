@@ -242,3 +242,12 @@ func (r *AssetAllocation) Parse(raw_response *http.Response) (*AssetAllocation, 
 	defer raw_response.Body.Close()
 	return r, nil
 }
+
+func (r *AMMMarketList) Parse(raw_response *http.Response) (*AMMMarketList, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
+}
