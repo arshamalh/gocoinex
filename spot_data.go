@@ -111,9 +111,14 @@ func (c *SpotDataClient) GetAllMarketStatistics() (*AllMarketStatistics, error) 
 	return (*AllMarketStatistics{}).Parse(raw_response)
 }
 
-// GET /common/currency/rate
 // Get the exchange rate of all cryptocurrencies to USD
-func (c *SpotDataClient) GetCurrencyRate() {}
+func (c *SpotDataClient) GetCurrencyRate() (*CurrencyRate, error) {
+	raw_response, err := c.get("common/currency/rate", Map{})
+	if err != nil {
+		return nil, err
+	}
+	return (*CurrencyRate{}).Parse(raw_response)
+}
 
 // GET /common/asset/config
 // Get all asset allocation
