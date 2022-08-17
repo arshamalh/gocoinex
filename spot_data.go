@@ -121,8 +121,10 @@ func (c *SpotDataClient) GetCurrencyRate() (*CurrencyRate, error) {
 }
 
 // Get all asset allocation
-func (c *SpotDataClient) GetAssetAllocation() (*AssetAllocation, error) {
-	raw_response, err := c.get("common/asset/config", Map{})
+func (c *SpotDataClient) GetAssetAllocation(coin_type string) (*AssetAllocation, error) {
+	raw_response, err := c.get("common/asset/config", Map{
+		"coin_type": coin_type,
+	})
 	if err != nil {
 		return nil, err
 	}
