@@ -6,8 +6,6 @@ import (
 	"net/url"
 )
 
-// SpotDataClient
-
 type SpotDataClient struct {
 	client *http.Client
 }
