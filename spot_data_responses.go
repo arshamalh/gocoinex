@@ -205,8 +205,6 @@ func (t *TickerData) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// parse method
-
 func (r *SingleMarketStatistics) Parse(raw_response *http.Response) (*SingleMarketStatistics, error) {
 	err := json.NewDecoder(raw_response.Body).Decode(r)
 	if err != nil {
