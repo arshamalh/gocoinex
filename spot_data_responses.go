@@ -131,7 +131,7 @@ type AMMMarketList struct {
 // MarginMarketList
 type MarginMarketList struct {
 	GeneralResponse
-	Data TickerData
+	Data map[string]string
 }
 
 type Float64 float64
