@@ -119,7 +119,7 @@ type CurrencyRate struct {
 // AssetAllocation
 type AssetAllocation struct {
 	GeneralResponse
-	Data TickerData
+	Data map[string]string
 }
 
 // AMMMarketList
