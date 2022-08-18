@@ -107,13 +107,13 @@ type SingleMarketStatistics struct {
 // AllMarketStatistics
 type AllMarketStatistics struct {
 	GeneralResponse
-	Data TickerData
+	Data map[string]string
 }
 
 // CurrencyRate
 type CurrencyRate struct {
 	GeneralResponse
-	Data TickerData
+	Data map[string]string
 }
 
 // AssetAllocation
@@ -125,7 +125,7 @@ type AssetAllocation struct {
 // AMMMarketList
 type AMMMarketList struct {
 	GeneralResponse
-	Data TickerData
+	Data []string
 }
 
 // MarginMarketList
