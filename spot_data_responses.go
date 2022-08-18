@@ -107,7 +107,7 @@ type SingleMarketStatistics struct {
 // AllMarketStatistics
 type AllMarketStatistics struct {
 	GeneralResponse
-	Data map[string]string
+	Data map[string]TickerData
 }
 
 // CurrencyRate
