@@ -103,20 +103,55 @@ func (c *SpotDataClient) GetSingleMarketStatistics(market string) (*SingleMarket
 }
 
 // Get all market statistics, applicable to spot and margin markets.
-func (c *SpotDataClient) GetAllMarketStatistics() {}
+func (c *SpotDataClient) GetAllMarketStatistics() (*AllMarketStatistics, error) {
+	raw_response, err := c.get("market/ticker/all", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&AllMarketStatistics{}).Parse(raw_response)
+}
 
 // GET /common/currency/rate
 // Get the exchange rate of all cryptocurrencies to USD
-func (c *SpotDataClient) GetCurrencyRate() {}
+func (c *SpotDataClient) GetCurrencyRate() (*CurrencyRate, error) {
+	raw_response, err := c.get("common/currency/rate", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&CurrencyRate{}).Parse(raw_response)
+}
 
 // GET /common/asset/config
 // Get all asset allocation
-func (c *SpotDataClient) GetAssetAllocation() {}
+func (c *SpotDataClient) GetAssetAllocation(coin_type string) (*AssetAllocation, error) {
+	params := Map{}
+	if coin_type != "" {
+		params["coin_type"] = coin_type
+	}
+
+	raw_response, err := c.get("common/asset/config", params)
+	if err != nil {
+		return nil, err
+	}
+	return (&AssetAllocation{}).Parse(raw_response)
+}
 
 // GET /amm/market
 // Get the list of AMM markets
-func (c *SpotDataClient) GetAMMMarketList() {}
+func (c *SpotDataClient) GetAMMMarketList() (*AMMMarketList, error) {
+	raw_response, err := c.get("amm/market", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&AMMMarketList{}).Parse(raw_response)
+}
 
 // GET /margin/market
 // Get the list of margin markets
-func (c *SpotDataClient) GetMarginMarketList() {}
+func (c *SpotDataClient) GetMarginMarketList() (*MarginMarketList, error) {
+	raw_response, err := c.get("margin/market", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&MarginMarketList{}).Parse(raw_response)
+}

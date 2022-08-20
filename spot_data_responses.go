@@ -181,5 +181,85 @@ func (r *SingleMarketStatistics) Parse(raw_response *http.Response) (*SingleMark
 		return nil, err
 	}
 	defer raw_response.Body.Close()
-	return r, err
+	return r, nil
+}
+
+type AllMarketStatistics struct {
+	GeneralResponse
+	Data map[string]TickerData
+}
+
+func (r *AllMarketStatistics) Parse(raw_response *http.Response) (*AllMarketStatistics, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
+}
+
+type CurrencyRate struct {
+	GeneralResponse
+	Data map[string]string
+}
+
+func (r *CurrencyRate) Parse(raw_response *http.Response) (*CurrencyRate, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
+}
+
+type SingleAssetAllocation struct {
+	Asset                  string `json:"asset"`                    // Asset name
+	Chain                  string `json:"chain"`                    // Chain name
+	CanDeposit             bool   `json:"can_deposit"`              // Whether the asset can be deposited
+	CanWithdraw            bool   `json:"can_withdraw"`             // Whether the asset can be withdrawn
+	DepositLeastAmount     string `json:"deposit_least_amount"`     // The least amount that can be deposited
+	WithdrawLeastAmount    string `json:"withdraw_least_amount"`    // The least amount that can be withdrawn
+	WithdrawTransactionFee string `json:"withdraw_transaction_fee"` // The fee of withdrawing the asset
+}
+
+type AssetAllocation struct {
+	GeneralResponse
+	Data map[string]SingleAssetAllocation
+}
+
+func (r *AssetAllocation) Parse(raw_response *http.Response) (*AssetAllocation, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
+}
+
+type AMMMarketList struct {
+	GeneralResponse
+	Data []string
+}
+
+func (r *AMMMarketList) Parse(raw_response *http.Response) (*AMMMarketList, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
+}
+
+type MarginMarketList struct {
+	GeneralResponse
+	Data map[string]int64
+}
+
+func (r *MarginMarketList) Parse(raw_response *http.Response) (*MarginMarketList, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	if err != nil {
+		return nil, err
+	}
+	defer raw_response.Body.Close()
+	return r, nil
 }
