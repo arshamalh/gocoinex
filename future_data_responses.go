@@ -1,1 +1,16 @@
 package gocoinex
+
+import (
+	"encoding/json"
+	"net/http"
+)
+
+type Ping struct {
+	Data string `json:"name"` // pong
+}
+
+func (r *Ping) Parse(raw_response *http.Response) (*Ping, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}

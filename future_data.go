@@ -43,9 +43,6 @@ func (c *FutureDataClient) Ping() (*Ping, error) {
 }
 
 //
-func (c *FutureDataClient) GetSystemTime() {}
-
-//
 func (c *FutureDataClient) GetMarketList() {}
 
 //
