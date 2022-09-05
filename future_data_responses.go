@@ -149,3 +149,19 @@ func (r *MarketLatestTransaction) Parse(raw_response *http.Response) (*MarketLat
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type MarketKLine struct {
+	Data00 int    `json:"data00"` // Timestamp
+	Data01 string `json:"data01"` // Opening price
+	Data02 string `json:"data02"` // Closing price
+	Data03 string `json:"data03"` // Highest price
+	Data04 string `json:"data04"` // Lowest price
+	Data05 string `json:"data05"` // Amount
+	Data06 string `json:"data06"` // Value
+}
+
+func (r *MarketKLine) Parse(raw_response *http.Response) (*MarketKLine, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
