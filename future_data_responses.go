@@ -134,3 +134,18 @@ func (r *MarketDepth) Parse(raw_response *http.Response) (*MarketDepth, error) {
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type MarketLatestTransaction struct {
+	Id      int    `json:"id"`      // Txid
+	Type    string `json:"type"`    // Type, “buy”: buy, “sell”: sell
+	Price   string `json:"price"`   // Executed Price
+	Amount  string `json:"amount"`  // Amount
+	Date    string `json:"date"`    // Transaction time, unit: second
+	Date_ms string `json:"date_ms"` // Transaction time, unit: milliseconds
+}
+
+func (r *MarketLatestTransaction) Parse(raw_response *http.Response) (*MarketLatestTransaction, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
