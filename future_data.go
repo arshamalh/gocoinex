@@ -42,8 +42,13 @@ func (c *FutureDataClient) Ping() (*Ping, error) {
 	return (&Ping{}).Parse(raw_response)
 }
 
-//
-func (c *FutureDataClient) GetMarketList() {}
+func (c *FutureDataClient) GetSystemTime() (*SystemTime, error) {
+	raw_response, err := c.get("https://api.coinex.com/perpetual/v1/time", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&SystemTime{}).Parse(raw_response)
+}
 
 //
 func (c *FutureDataClient) GetPositionLevel() {}
