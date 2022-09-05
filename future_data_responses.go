@@ -88,3 +88,33 @@ func (r *MarketStatus) Parse(raw_response *http.Response) (*MarketStatus, error)
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type AllMarketStatus struct {
+	Period               int    `json:"period"`               // period
+	Funding_time         int    `json:"funding_time"`         // The remaining time for the next collection of the funding rate, unit: minute
+	Position_amount      string `json:"position_amount"`      // Amount
+	Funding_rate_last    string `json:"funding_rate_last"`    // Last funding rate
+	Funding_rate_next    string `json:"funding_rate_next"`    // Next funding rate
+	Funding_rate_predict string `json:"funding_rate_predict"` // Predicted funding rate
+	Last                 string `json:"last"`                 // Latest Price
+	sign_price           string `json:"sign_price"`           // Mark Price
+	Index_price          string `json:"index_price"`          // Index Price
+	Sell_total           string `json:"sell_total"`           // The number of ask orders in the last 1,000 transactions
+	Buy_total            string `json:"buy_total"`            // The number of bid orders in the last 1,000 transactions
+	Open                 string `json:"open"`                 // Opening price
+	Close                string `json:"close"`                // Closing price
+	High                 string `json:"high"`                 // Highest price
+	Low                  string `json"low"`                   // Lowest price
+	Vol                  string `json:"vol"`                  // Amount
+	Buy                  string `json:"buy"`                  // Bid1 price
+	Buy_amount           string `json:"buy_amount"`           // Bid1 amount
+	Sell                 string `json:"sell"`                 // Ask1 price
+	Sell_amount          string `json:"sell_amount"`          // Ask1 amount
+	Date                 int    `json:"date"`                 // Date timestamp
+}
+
+func (r *AllMarketStatus) Parse(raw_response *http.Response) (*AllMarketStatus, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
