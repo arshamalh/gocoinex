@@ -119,7 +119,7 @@ func (r *AllMarketStatus) Parse(raw_response *http.Response) (*AllMarketStatus, 
 	return r, err
 }
 
-type MarketDepth struct {
+type Marketdepth struct {
 	Asks00      string `json:"asks00"`      // Ask1 price
 	Asks01      string `json:"asks01"`      // Ask1 amount
 	Bids00      string `json:"bids00"`      // Bid1 price
@@ -129,7 +129,7 @@ type MarketDepth struct {
 	Index_price string `json:"index_price"` // Index Price
 }
 
-func (r *MarketDepth) Parse(raw_response *http.Response) (*MarketDepth, error) {
+func (r *Marketdepth) Parse(raw_response *http.Response) (*Marketdepth, error) {
 	err := json.NewDecoder(raw_response.Body).Decode(r)
 	defer raw_response.Body.Close()
 	return r, err
