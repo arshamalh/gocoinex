@@ -3,7 +3,7 @@ package gocoinex
 import "net/http"
 
 type FutureDataClient struct {
-	client *http.Client
+	client Client
 }
 
 func NewFutureDataClient() *FutureDataClient {

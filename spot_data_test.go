@@ -110,9 +110,11 @@ func TestGetAllMarketInfo(t *testing.T) {
 	mockedClient.On("Do", request).Return(response, nil)
 	got, _ := spot_data_client.GetAllMarketInfo()
 	assert.EqualValues(t, test_case.want, got)
+	mockedClient.AssertExpectations(t)
 
 	// Set mock & Test sad path
 	mockedClient.On("Do", request).Return(nil, errors.New("there is no data"))
 	_, err := spot_data_client.GetAllMarketInfo()
 	assert.Error(t, err)
+	mockedClient.AssertExpectations(t)
 }
