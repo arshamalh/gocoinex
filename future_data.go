@@ -41,10 +41,14 @@ func (c *FutureDataClient) GetAllMarketStatus() {
 }
 
 // Market Depth
-func (c *FutureDataClient) GetMarketDepth(market string, merge string, limit int) {}
+func (c *FutureDataClient) GetMarketDepth(market string, merge string, limit int) {
 
-//
-func (c *FutureDataClient) GetMarketLatestTransaction() {}
+}
+
+// Latest Transaction in the Market
+func (c *FutureDataClient) GetMarketLatestTransaction(market string, last_id int, limit int) {
+
+}
 
 //
 func (c *FutureDataClient) GetMarketKLine() {}
