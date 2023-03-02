@@ -155,3 +155,17 @@ type AdjustLeverage struct {
 type EstimatedAmountOfPositionsToBeOpened struct {
 	Position_expect string `json:"position_expect"` // Estimated Amount of Positions To Be Opened
 }
+
+/*
+
+type AssetQuery struct {
+	Available     string `json:"available"`     // Available
+	Frozen        string `json:"frozen"`        // Frozen
+	Tranfer       string `json:"tranfer"`       // Available
+	Balance_total string `json:"balance_total"` //  Balance
+	Margin        string `json:"margin"`        // Margin
+	Profit_unreal string `json:"profit_unreal"` //  	Unrealized PNL
+
+}
+
+*/
