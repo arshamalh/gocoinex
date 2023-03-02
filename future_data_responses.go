@@ -26,3 +26,10 @@ type MarketList struct {
 	Available   bool     `json:"available"`   // Whether the market is open
 
 }
+
+type PositionLevel struct {
+	Params0 string `json:"params0"` // amount, amount
+	Params1 string `json:"params1"` // leverage, leverage
+	Params2 string `json:"params2"` // mainten margin, maintenance margin rate
+
+}
