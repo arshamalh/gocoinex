@@ -172,4 +172,5 @@ func (c *FutureDataClient) GetQueryUserHistoricalFundingRate(market string, star
 
 // Position Stop-Loss Settings
 func (c *FutureDataClient) PostPositionStopLossSettings(market string, position_id int, stop_type int, stop_loss_price string, timestamp int, windowtime int) {
+
 }
