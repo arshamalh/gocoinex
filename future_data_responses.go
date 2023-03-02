@@ -104,3 +104,14 @@ type LatestTransactionInTheMarket struct {
 	Date    string `json:"date"`
 	Data_ms string `json:"data_ms"`
 }
+
+type MarketKLine struct {
+	Data0 int    `json:"data0"` // Timestamp
+	Data1 string `json:"data1"` // Opening price
+	Data2 string `json:"data2"` // Closing price
+	Data3 string `json:"data3"` // Highest price
+	Data4 string `json:"data4"` // Lowest price
+	Data5 string `json:"data5"` // Amount
+	Data6 string `json:"data6"` // Value
+
+}
