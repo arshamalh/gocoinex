@@ -95,3 +95,12 @@ type MarketDepth struct {
 }
 
 */
+
+type LatestTransactionInTheMarket struct {
+	Id      int    `json:"id"`
+	Type    string `json:"type"`
+	Price   string `json:"price"`
+	Amount  string `json:"amount"`
+	Date    string `json:"date"`
+	Data_ms string `json:"data_ms"`
+}
