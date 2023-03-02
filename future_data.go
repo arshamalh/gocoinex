@@ -189,3 +189,8 @@ func (c *FutureDataClient) PostMarketCloseAll(market string, position_id int, ti
 func (c *FutureDataClient) GetQueryMarketHistoricalFundingRate(market string, start_time int, end_time int, offset int, limit int) {
 
 }
+
+// Modify order
+func (c *FutureDataClient) PostModifyOrder(market string, order_id int, amount string, price string, timestamp int, windowtime int) {
+
+}
