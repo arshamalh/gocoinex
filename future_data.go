@@ -11,7 +11,7 @@ func NewFutureDataClient() *FutureDataClient {
 }
 
 // Ping/Pong
-func (c *FutureDataClient) Ping(data string) {
+func (c *FutureDataClient) Ping() {
 
 }
 
