@@ -209,3 +209,8 @@ func (c *FutureDataClient) GetPositionADLHistoryQuery(market string, position_id
 func (c *FutureDataClient) PostCancelOrdersByClientid(market string, client_id string, timestamp int, windowtime int) {
 
 }
+
+// Cancel Stop Orders By client_id
+func (c *FutureDataClient) PostCancelStopOrdersByClientid(market string, client_id string, timestamp int, windowtime int) {
+
+}
