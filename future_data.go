@@ -50,5 +50,7 @@ func (c *FutureDataClient) GetMarketLatestTransaction(market string, last_id int
 
 }
 
-//
-func (c *FutureDataClient) GetMarketKLine() {}
+// Market K-Line
+func (c *FutureDataClient) GetMarketKLine(market string, limit int, Type string) {
+
+}
