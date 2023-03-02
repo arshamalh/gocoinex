@@ -598,3 +598,20 @@ type UserPositions struct {
 	Adl_sort              int     `json:"adl_sort"`              // Sort by ADL
 	Total                 int     `json:"total"`                 // Number of accounts with positions
 }
+
+type QueryUserHistoricalFundingRate struct {
+	User_id      int    `json:"user_id"`      // User ID
+	Time         int    `json:"time"`         // Timestamp
+	Market       string `json:"market"`       // Market
+	Asset        string `json:"asset"`        // Asset name
+	Type         int    `json:"type"`         // Order type, 1: limit order, 2: market order
+	Position_id  int    `json:"position_id"`  // Position id
+	Side         int    `json:"side"`         // 1: Short, 2: Long
+	Amount       string `json:"amount"`       // Amount
+	Price        string `json:"price"`        // Price
+	Funding_rate string `json:"funding_rate"` // Funding rate
+	Funding      string `json:"funding"`      // Funding fee
+	Offset       int    `json:"offset"`       // Offset
+	Limit        int    `json:"limit"`        // Number of records per query
+
+}
