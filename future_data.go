@@ -89,3 +89,8 @@ func (c *FutureDataClient) PostSubmitMarketOrder(market string, side int, amount
 func (c *FutureDataClient) PostSubmitStopLimitOrder(market string, side int, stop_type int, amount string, stop_price string, price string, effect_type int, option int, client_id string, timestamp int, windowtime int) {
 
 }
+
+// Submit Stop-Market Order
+func (c *FutureDataClient) PostSubmitStopMarketOrder(market string, side int, stop_type int, amount string, stop_price string, client_id string, timestamp int, windowtime int) {
+
+}
