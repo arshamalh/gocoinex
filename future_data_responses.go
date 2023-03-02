@@ -151,3 +151,7 @@ type AdjustLeverage struct {
 	Position_type int    `json:"position_type"` // Position Type
 	Leverage      string `json:"leverage"`      // Margin
 }
+
+type EstimatedAmountOfPositionsToBeOpened struct {
+	Position_expect string `json:"position_expect"` // Estimated Amount of Positions To Be Opened
+}
