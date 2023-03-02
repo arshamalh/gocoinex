@@ -115,3 +115,34 @@ type MarketKLine struct {
 	Data6 string `json:"data6"` // Value
 
 }
+
+type UserTransaction struct {
+	Offset          int    `json:"offset"`          // Offset
+	Limit           int    `json:"limit"`           // Number of query
+	Id              int    `json:"id"`              // Transaction ID
+	Time            int    `json:"time"`            // Timestamp
+	Deal_type       int    `json:"deal_type"`       // Transaction type, 1: open position, 2: add margin, 3: reduce margin, 4: close position, 5: reduce by system, 6: liquidate position, 7: position adl
+	Market          string `json:"market"`          //  Market name
+	User_id         int    `json:"user_id"`         // User ID
+	Deal_user_id    int    `json:"deal_user_id"`    // Counter-party user id
+	Order_id        int    `json:"order_id"`        // Order id
+	Deal_order_id   int    `json:"deal_order_id"`   // Counter-party order id
+	Position_id     int    `json:"position_id"`     // Position id
+	Side            int    `json:"side"`            // 1: sell, 2: buy
+	Role            int    `json:"role"`            // 1: maker, 2: taker
+	Position_type   int    `json:"position_type"`   // Margin type, 1: Isolated, 2: Cross
+	Price           string `json:"price"`           // Price
+	Open_price      string `json:"open_price"`      // Opening Price
+	Settle_price    string `json:"settle_price"`    // Settlement Price
+	Amount          string `json:"amount"`          // Amount
+	Position_amount string `json:"position_amount"` // Amount
+	Margin_amount   string `json:"margin_amount"`   // Position margin after transaction
+	Leverage        string `json:"leverage"`        // Margin
+	Deal_stock      string `json:"deal_stock"`      // Number of base coin transactions
+	Deal_fee        string `json:"deal_fee"`        // Fee
+	Deal_margin     string `json:"deal_margin"`     // Trading margin
+	Fee_rate        string `json:"fee_rate"`        // Fee rate
+	Deal_profit     string `json:"deal_profit"`     // Realized PNL
+	Deal_insurance  string `json:"deal_insurance "` // Consumed or increased insurance fund
+
+}
