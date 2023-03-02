@@ -40,8 +40,8 @@ func (c *FutureDataClient) GetAllMarketStatus() {
 
 }
 
-//
-func (c *FutureDataClient) GetMarketDepth() {}
+// Market Depth
+func (c *FutureDataClient) GetMarketDepth(market string, merge string, limit int) {}
 
 //
 func (c *FutureDataClient) GetMarketLatestTransaction() {}
