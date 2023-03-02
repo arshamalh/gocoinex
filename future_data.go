@@ -64,3 +64,8 @@ func (c *FutureDataClient) GetUserTransaction(market string, side int, start_tim
 func (c *FutureDataClient) PostAdjustLeverage(market string, leverage string, position_type int, timestamp int, windowtime int) {
 
 }
+
+// Estimated Amount of Positions To Be Opened
+func (c *FutureDataClient) PostEstimatedAmountOfPositionsToBeOpened(market string, price string, side int, timestamp int, windowtime int) {
+
+}
