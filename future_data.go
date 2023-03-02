@@ -15,8 +15,10 @@ func (c *FutureDataClient) Ping() {
 
 }
 
-//
-func (c *FutureDataClient) GetSystemTime() {}
+// System Time
+func (c *FutureDataClient) GetSystemTime() {
+
+}
 
 //
 func (c *FutureDataClient) GetMarketList() {}
