@@ -1,3 +1,6 @@
 package gocoinex
 
-// for returns and parse methods
+type Ping struct {
+	Data string `json:"data"` // Pong
+
+}
