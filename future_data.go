@@ -10,8 +10,10 @@ func NewFutureDataClient() *FutureDataClient {
 	return &FutureDataClient{client: &http.Client{}}
 }
 
-//
-func (c *FutureDataClient) Ping() {}
+// Ping/Pong
+func (c *FutureDataClient) Ping(data string) {
+
+}
 
 //
 func (c *FutureDataClient) GetSystemTime() {}
