@@ -184,3 +184,8 @@ func (c *FutureDataClient) PostPositionTakeProfitSettings(market string, positio
 func (c *FutureDataClient) PostMarketCloseAll(market string, position_id int, timestamp int, windowtime int) {
 
 }
+
+// Query Market Historical Funding Rate
+func (c *FutureDataClient) GetQueryMarketHistoricalFundingRate(market string, start_time int, end_time int, offset int, limit int) {
+
+}
