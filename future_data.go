@@ -20,8 +20,10 @@ func (c *FutureDataClient) GetSystemTime() {
 
 }
 
-//
-func (c *FutureDataClient) GetMarketList() {}
+// Market List
+func (c *FutureDataClient) GetMarketList() {
+
+}
 
 //
 func (c *FutureDataClient) GetPositionLevel() {}
