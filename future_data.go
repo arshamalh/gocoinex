@@ -149,3 +149,8 @@ func (c *FutureDataClient) GetQueryFinishedOrder(market string, side int, start_
 func (c *FutureDataClient) PostLimitClose(market string, position_id int, amount string, price string, effect_type int, option int, client_id string, timestamp int, windowtim int) {
 
 }
+
+// Market Close
+func (c *FutureDataClient) PostMarketClose(market string, position_id int, amount string, client_id string, timestamp int, windowtime int) {
+
+}
