@@ -737,3 +737,15 @@ type Modifyorder struct {
 	Position_type    int     `json:"position_type"`    // Margin type, 1: Isolated, 2: Cross
 
 }
+
+type PositionADLHistoryQuery struct {
+	Amount      string `json:"amount"`      // Amount
+	Deal_id     int    `json:"deal_id"`     // Transaction ID
+	Market      string `json:"market"`      // Market name
+	Order_id    int    `json:"order_id"`    // Order id
+	Price       string `json:"price"`       // Price
+	Position_id int    `json:"position_id"` // Position id
+	Role        int    `json:"role"`        // 1: maker, 2: taker
+	Side        int    `json:"side"`        // 1: sell, 2: buy
+	Time        int    `json:"time"`        // Timestamp
+}
