@@ -81,3 +81,17 @@ type AllMarketStatus struct {
 	Sell_amount          string `json:"sell_amount"`          // Ask1 amount
 	Date                 int    `json:"date"`                 // Date timestamp
 }
+
+/*
+
+type MarketDepth struct {
+	Asks0       string `json:"asks00"`      // Ask1 price
+	Asks1       string `json:"asks01"`      // Ask1 amount
+	Bids00      string `json:"bids00"`      // Bid1 price
+	Bids01      string `json:"bids01"`      // Bid1 amount
+	Last        string `json:"last"`        // Price
+	Sign_price  string `json:"sign_price"`  // Mark Price
+	Index_price string `json:"index_price"` // Index Price
+}
+
+*/
