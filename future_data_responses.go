@@ -97,12 +97,12 @@ type MarketDepth struct {
 */
 
 type LatestTransactionInTheMarket struct {
-	Id      int    `json:"id"`
-	Type    string `json:"type"`
-	Price   string `json:"price"`
-	Amount  string `json:"amount"`
-	Date    string `json:"date"`
-	Data_ms string `json:"data_ms"`
+	Id      int    `json:"id"`      // Txid
+	Type    string `json:"type"`    // Type, “buy”: buy, “sell”: sell
+	Price   string `json:"price"`   // Executed Price
+	Amount  string `json:"amount"`  // Amount
+	Date    string `json:"date"`    // Transaction time, unit: second
+	Data_ms string `json:"data_ms"` // Transaction time, unit: milliseconds
 }
 
 type MarketKLine struct {
