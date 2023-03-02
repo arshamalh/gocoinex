@@ -146,3 +146,8 @@ type UserTransaction struct {
 	Deal_insurance  string `json:"deal_insurance "` // Consumed or increased insurance fund
 
 }
+
+type AdjustLeverage struct {
+	Position_type int    `json:"position_type"` // Position Type
+	Leverage      string `json:"leverage"`      // Margin
+}
