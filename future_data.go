@@ -204,3 +204,8 @@ func (c *FutureDataClient) PostModifyStopOrder(market string, order_id int, amou
 func (c *FutureDataClient) GetPositionADLHistoryQuery(market string, position_id int, start_time int, end_time int, offset int, limit int) {
 
 }
+
+// Cancel Orders By client_id
+func (c *FutureDataClient) PostCancelOrdersByClientid(market string, client_id string, timestamp int, windowtime int) {
+
+}
