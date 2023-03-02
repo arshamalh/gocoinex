@@ -35,8 +35,10 @@ func (c *FutureDataClient) GetMarketStatus() {
 
 }
 
-//
-func (c *FutureDataClient) GetAllMarketStatus() {}
+// All Market Status
+func (c *FutureDataClient) GetAllMarketStatus() {
+
+}
 
 //
 func (c *FutureDataClient) GetMarketDepth() {}
