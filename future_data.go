@@ -94,3 +94,8 @@ func (c *FutureDataClient) PostSubmitStopLimitOrder(market string, side int, sto
 func (c *FutureDataClient) PostSubmitStopMarketOrder(market string, side int, stop_type int, amount string, stop_price string, client_id string, timestamp int, windowtime int) {
 
 }
+
+// Cancel Order In Batch
+func (c *FutureDataClient) PostCancelOrderInBatch(market string, order_ids string, timestamp int, windowtime int) {
+
+}
