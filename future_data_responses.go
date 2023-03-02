@@ -695,3 +695,13 @@ type PositionTakeProfitSettings struct {
 	Total                 int     `json:"total"`                 // Number of accounts with positions
 
 }
+
+type QueryMarketHistoricalFundingRate struct {
+	Time              int    `json:"time"`              // Timestamp
+	Market            string `json:"market"`            //  Market name
+	Asset             string `json:"asset"`             // Asset name
+	Funding_rate      string `json:"funding_rate"`      // Funding rate
+	Funding_rate_real string `json:"Funding_rate_real"` // actual funding rate
+	Offset            int    `json:"offset"`            // Offset
+	Limit             int    `json:"limit"`             // Number of query
+}
