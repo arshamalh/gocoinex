@@ -31,7 +31,7 @@ func (c *FutureDataClient) GetPositionLevel() {
 }
 
 // Market Status
-func (c *FutureDataClient) GetMarketStatus() {
+func (c *FutureDataClient) GetMarketStatus(market string) {
 
 }
 
