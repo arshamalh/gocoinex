@@ -199,3 +199,8 @@ func (c *FutureDataClient) PostModifyOrder(market string, order_id int, amount s
 func (c *FutureDataClient) PostModifyStopOrder(market string, order_id int, amount string, price string, stop_price string, timestamp int, windowtime int) {
 
 }
+
+// Position ADL History Query
+func (c *FutureDataClient) GetPositionADLHistoryQuery(market string, position_id int, start_time int, end_time int, offset int, limit int) {
+
+}
