@@ -152,9 +152,7 @@ type EstimatedAmountOfPositionsToBeOpened struct {
 	Position_expect string `json:"position_expect"` // Estimated Amount of Positions To Be Opened
 }
 
-/*
-
-type AssetQuery struct {
+type AssetQueryFuture struct {
 	Available     string `json:"available"`     // Available
 	Frozen        string `json:"frozen"`        // Frozen
 	Tranfer       string `json:"tranfer"`       // Available
@@ -163,8 +161,6 @@ type AssetQuery struct {
 	Profit_unreal string `json:"profit_unreal"` // Unrealized PNL
 
 }
-
-*/
 
 type SubmitLimitOrder struct {
 	Order_id         int     `json:"order_id"`         // Order id
