@@ -353,6 +353,12 @@ type CancelOrderInBatch struct {
 
 }
 
+func (r *CancelOrderInBatch) Parse(raw_response *http.Response) (*CancelOrderInBatch, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type CancelOrder struct {
 	Order_id         int     `json:"order_id"`         // Order id
 	Position_id      int     `json:"position_id"`      // Position id
