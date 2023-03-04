@@ -866,6 +866,12 @@ type PositionTakeProfitSettings struct {
 
 }
 
+func (r *PositionStopLossSettings) Parse(raw_response *http.Response) (*PositionStopLossSettings, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type QueryMarketHistoricalFundingRate struct {
 	Time              int    `json:"time"`              // Timestamp
 	Market            string `json:"market"`            // Market name
@@ -874,6 +880,12 @@ type QueryMarketHistoricalFundingRate struct {
 	Funding_rate_real string `json:"Funding_rate_real"` // actual funding rate
 	Offset            int    `json:"offset"`            // Offset
 	Limit             int    `json:"limit"`             // Number of query
+}
+
+func (r *QueryMarketHistoricalFundingRate) Parse(raw_response *http.Response) (*QueryMarketHistoricalFundingRate, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
 }
 
 type Modifyorder struct {
