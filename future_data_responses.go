@@ -751,6 +751,12 @@ type UserPositions struct {
 	Total                 int     `json:"total"`                 // Number of accounts with positions
 }
 
+func (r *UserPositions) Parse(raw_response *http.Response) (*UserPositions, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type QueryUserHistoricalFundingRate struct {
 	User_id      int    `json:"user_id"`      // User ID
 	Time         int    `json:"time"`         // Timestamp
