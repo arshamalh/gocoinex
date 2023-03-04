@@ -148,6 +148,12 @@ type LatestTransactionInTheMarket struct {
 	Data_ms string `json:"data_ms"` // Transaction time, unit: milliseconds
 }
 
+func (r *LatestTransactionInTheMarket) Parse(raw_response *http.Response) (*LatestTransactionInTheMarket, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type MarketKLine struct {
 	Data0 int    `json:"data0"` // Timestamp
 	Data1 string `json:"data1"` // Opening price
