@@ -117,6 +117,12 @@ type AllMarketStatus struct {
 	Date                 int    `json:"date"`                 // Date timestamp
 }
 
+func (r *AllMarketStatus) Parse(raw_response *http.Response) (*AllMarketStatus, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type MarketDepthFuture struct {
 	Asks0       string `json:"asks00"`      // Ask1 price
 	Asks1       string `json:"asks01"`      // Ask1 amount
