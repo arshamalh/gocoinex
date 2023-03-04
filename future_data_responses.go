@@ -624,6 +624,12 @@ type LimitClose struct {
 	Position_type    int     `json:"position_type"`    // Margin type, 1: Isolated, 2: Cross
 }
 
+func (r *LimitClose) Parse(raw_response *http.Response) (*LimitClose, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type MarketClose struct {
 	Order_id         int     `json:"order_id"`         // Order id
 	Position_id      int     `json:"position_id"`      // Position id
