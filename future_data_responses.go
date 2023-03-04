@@ -522,6 +522,12 @@ type QueryPendingStopOrders struct {
 
 }
 
+func (r *QueryPendingStopOrders) Parse(raw_response *http.Response) (*QueryPendingStopOrders, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type StopOrderStatus struct {
 	Order_id    int     `json:"order_id"`    // Order id
 	Market      string  `json:"market"`      // Market name
