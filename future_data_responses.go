@@ -661,6 +661,12 @@ type MarketClose struct {
 	Position_type    int     `json:"position_type"`    // Margin type, 1: Isolated, 2: Cross
 }
 
+func (r *MarketClose) Parse(raw_response *http.Response) (*MarketClose, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type AdjustPositionMargin struct {
 	Position_id           int     `json:"position_id"`           // Position id
 	Create_time           float64 `json:"create_time"`           // Create time
