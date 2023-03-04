@@ -212,6 +212,12 @@ type AdjustLeverage struct {
 	Leverage      string `json:"leverage"`      // Margin
 }
 
+func (r *AdjustLeverage) Parse(raw_response *http.Response) (*AdjustLeverage, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type EstimatedAmountOfPositionsToBeOpened struct {
 	Position_expect string `json:"position_expect"` // Estimated Amount of Positions To Be Opened
 }
