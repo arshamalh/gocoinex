@@ -199,7 +199,12 @@ type UserTransaction struct {
 	Fee_rate        string `json:"fee_rate"`        // Fee rate
 	Deal_profit     string `json:"deal_profit"`     // Realized PNL
 	Deal_insurance  string `json:"deal_insurance "` // Consumed or increased insurance fund
+}
 
+func (r *UserTransaction) Parse(raw_response *http.Response) (*UserTransaction, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
 }
 
 type AdjustLeverage struct {
