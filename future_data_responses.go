@@ -774,6 +774,12 @@ type QueryUserHistoricalFundingRate struct {
 
 }
 
+func (r *QueryUserHistoricalFundingRate) Parse(raw_response *http.Response) (*QueryUserHistoricalFundingRate, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type PositionStopLossSettings struct {
 	Position_id           int     `json:"position_id"`           // Position id
 	Create_time           float64 `json:"create_time"`           // Create time
