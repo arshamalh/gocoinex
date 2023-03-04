@@ -21,6 +21,12 @@ type SystemTime struct {
 
 }
 
+func (r *SystemTime) Parse(raw_response *http.Response) (*SystemTime, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type MarketList struct {
 	Name        string   `json:"name"`        // Market name
 	Type        int      `json:"type"`        // Contract type, 1: Linear contract, 2: Inverse contract
