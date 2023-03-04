@@ -44,6 +44,12 @@ type MarketList struct {
 
 }
 
+func (r *MarketList) Parse(raw_response *http.Response) (*MarketList, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type PositionLevel struct {
 	Params0 string `json:"params0"` // amount, amount
 	Params1 string `json:"params1"` // leverage, leverage
