@@ -87,6 +87,12 @@ type MarketStatus struct {
 	Date                 int    `json:"date"`                 // Date timestamp
 }
 
+func (r *MarketStatus) Parse(raw_response *http.Response) (*MarketStatus, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type AllMarketStatus struct {
 	Period               int    `json:"period"`               // Period
 	Funding_time         int    `json:"funding_time"`         // The remaining time for the next collection of the funding rate, unit: minute
