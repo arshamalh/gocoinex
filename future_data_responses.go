@@ -820,6 +820,12 @@ type PositionStopLossSettings struct {
 
 }
 
+func (r *PositionStopLossSettings) Parse(raw_response *http.Response) (*PositionStopLossSettings, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type PositionTakeProfitSettings struct {
 	Position_id           int     `json:"position_id"`           // Position id
 	Create_time           float64 `json:"create_time"`           // Create time
