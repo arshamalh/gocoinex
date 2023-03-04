@@ -1,13 +1,11 @@
 package gocoinex
 
 import (
-	"fmt"
 	"net/http"
-	"net/url"
 )
 
 type SpotDataClient struct {
-	client *http.Client
+	client Client
 }
 
 func NewSpotDataClient() *SpotDataClient {
@@ -15,22 +13,10 @@ func NewSpotDataClient() *SpotDataClient {
 }
 
 func (c *SpotDataClient) get(endpoint string, params Map) (*http.Response, error) {
-	route, err := url.Parse(BaseURL + endpoint)
-	query := route.Query()
+	request, err := requestMaker(endpoint, params)
 	if err != nil {
 		return nil, err
 	}
-	if params != nil {
-		for k, v := range params {
-			query.Set(k, fmt.Sprintf("%v", v))
-		}
-		route.RawQuery = query.Encode()
-	}
-	request, err := http.NewRequest("GET", route.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-	request.Header.Set("User-Agent", UserAgent)
 	return c.client.Do(request)
 }
 
