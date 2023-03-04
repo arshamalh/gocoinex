@@ -492,6 +492,12 @@ type OrderStatus struct {
 	Status           string  `json:"status"`           // Status not_deal: not executed, part_deal: partially executed, done: executed, cancel: canceled
 }
 
+func (r *OrderStatus) Parse(raw_response *http.Response) (*OrderStatus, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type QueryPendingStopOrders struct {
 	Order_id    int     `json:"order_id"`    // Order id
 	Market      string  `json:"market"`      // Market name
