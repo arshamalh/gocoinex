@@ -133,6 +133,12 @@ type MarketDepthFuture struct {
 	Index_price string `json:"index_price"` // Index Price
 }
 
+func (r *MarketDepthFuture) Parse(raw_response *http.Response) (*MarketDepthFuture, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type LatestTransactionInTheMarket struct {
 	Id      int    `json:"id"`      // Txid
 	Type    string `json:"type"`    // Type, “buy”: buy, “sell”: sell
