@@ -866,7 +866,7 @@ type PositionTakeProfitSettings struct {
 
 }
 
-func (r *PositionStopLossSettings) Parse(raw_response *http.Response) (*PositionStopLossSettings, error) {
+func (r *PositionTakeProfitSettings) Parse(raw_response *http.Response) (*PositionTakeProfitSettings, error) {
 	err := json.NewDecoder(raw_response.Body).Decode(r)
 	defer raw_response.Body.Close()
 	return r, err
