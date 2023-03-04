@@ -222,6 +222,12 @@ type EstimatedAmountOfPositionsToBeOpened struct {
 	Position_expect string `json:"position_expect"` // Estimated Amount of Positions To Be Opened
 }
 
+func (r *EstimatedAmountOfPositionsToBeOpened) Parse(raw_response *http.Response) (*EstimatedAmountOfPositionsToBeOpened, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type AssetQueryFuture struct {
 	Available     string `json:"available"`     // Available
 	Frozen        string `json:"frozen"`        // Frozen
