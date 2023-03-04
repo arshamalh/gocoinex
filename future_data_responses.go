@@ -548,6 +548,12 @@ type StopOrderStatus struct {
 	Client_id   string  `json:"client_id"`   // Client id
 }
 
+func (r *StopOrderStatus) Parse(raw_response *http.Response) (*StopOrderStatus, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type QueryFinishedOrder struct {
 	Order_id         int     `json:"order_id"`         // Order id
 	Position_id      int     `json:"position_id"`      // Position id
