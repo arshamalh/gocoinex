@@ -920,6 +920,12 @@ type Modifyorder struct {
 
 }
 
+func (r *Modifyorder) Parse(raw_response *http.Response) (*Modifyorder, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type PositionADLHistoryQuery struct {
 	Amount      string `json:"amount"`      // Amount
 	Deal_id     int    `json:"deal_id"`     // Transaction ID
