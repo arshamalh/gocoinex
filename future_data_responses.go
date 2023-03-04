@@ -165,6 +165,12 @@ type MarketKLine struct {
 
 }
 
+func (r *MarketKLine) Parse(raw_response *http.Response) (*MarketKLine, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type UserTransaction struct {
 	Offset          int    `json:"offset"`          // Offset
 	Limit           int    `json:"limit"`           // Number of query
