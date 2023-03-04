@@ -57,6 +57,12 @@ type PositionLevel struct {
 
 }
 
+func (r *PositionLevel) Parse(raw_response *http.Response) (*PositionLevel, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type MarketStatus struct {
 	Period               int    `json:"period"`               // Period
 	Funding_time         int    `json:"funding_time"`         // The remaining time for the next collection of the funding rate, unit: minute
