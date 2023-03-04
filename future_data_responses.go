@@ -937,3 +937,9 @@ type PositionADLHistoryQuery struct {
 	Side        int    `json:"side"`        // 1: sell, 2: buy
 	Time        int    `json:"time"`        // Timestamp
 }
+
+func (r *PositionADLHistoryQuery) Parse(raw_response *http.Response) (*PositionADLHistoryQuery, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
