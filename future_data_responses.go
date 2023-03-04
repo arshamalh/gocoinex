@@ -313,6 +313,12 @@ type SubmitMarketOrder struct {
 
 }
 
+func (r *SubmitMarketOrder) Parse(raw_response *http.Response) (*SubmitMarketOrder, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type CancelOrderInBatch struct {
 	Code             int     `json:"code"`             // Error code
 	Message          string  `json:"message"`          // Error message
