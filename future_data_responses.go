@@ -389,6 +389,12 @@ type CancelOrder struct {
 	Position_type    int     `json:"position_type"`    // Margin type, 1: Isolated, 2: Cross
 }
 
+func (r *CancelOrder) Parse(raw_response *http.Response) (*CancelOrder, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type CancelStopOrder struct {
 	Order_id    int     `json:"order_id"`    // Order id
 	Market      string  `json:"market"`      // Market name
