@@ -414,6 +414,12 @@ type CancelStopOrder struct {
 	Client_id   string  `json:"client_id"`   // Client id
 }
 
+func (r *CancelStopOrder) Parse(raw_response *http.Response) (*CancelStopOrder, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
+
 type QueryPendingOrders struct {
 	Order_id         int     `json:"order_id"`         // Order id
 	Position_id      int     `json:"position_id"`      // Position id
