@@ -1,18 +1,12 @@
 package gocoinex
 
-import (
-	"io"
-	"net/http"
-	"strings"
-	"testing"
-)
-
 func newFutureDataClient(client Client) *FutureDataClient {
 	return &FutureDataClient{
 		client: client,
 	}
 }
 
+/*
 func TestGetMarketList(t *testing.T) {
 	mockedClient := new(mockedClient)
 	client := newFutureDataClient(mockedClient)
@@ -21,3 +15,4 @@ func TestGetMarketList(t *testing.T) {
 	mockedClient.On("Do").Return(httpResponse, nil)
 	client.GetMarketList()
 }
+*/

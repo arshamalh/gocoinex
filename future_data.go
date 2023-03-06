@@ -9,3 +9,8 @@ type FutureDataClient struct {
 func NewFutureDataClient() *FutureDataClient {
 	return &FutureDataClient{client: &http.Client{}}
 }
+
+// Ping/Pong
+func (c *FutureDataClient) Ping() {
+
+}
