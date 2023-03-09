@@ -871,3 +871,19 @@ func (r *PositionTakeProfitSettings) Parse(raw_response *http.Response) (*Positi
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type QueryMarketHistoricalFundingRate struct {
+	Time              int    `json:"time"`              // Timestamp
+	Market            string `json:"market"`            // Market name
+	Asset             string `json:"asset"`             // Asset name
+	Funding_rate      string `json:"funding_rate"`      // Funding rate
+	Funding_rate_real string `json:"Funding_rate_real"` // actual funding rate
+	Offset            int    `json:"offset"`            // Offset
+	Limit             int    `json:"limit"`             // Number of query
+}
+
+func (r *QueryMarketHistoricalFundingRate) Parse(raw_response *http.Response) (*QueryMarketHistoricalFundingRate, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
