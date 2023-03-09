@@ -53,3 +53,12 @@ func (c *FutureDataClient) GetPositionLevel() (*PositionLevel, error) {
 	}
 	return (&PositionLevel{}).Parse(raw_response)
 }
+
+// Market Status
+func (c *FutureDataClient) GetMarketStatus() (*MarketStatus, error) {
+	raw_response, err := c.get("https://api.coinex.com/perpetual/v1/market/ticker", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&MarketStatus{}).Parse(raw_response)
+}
