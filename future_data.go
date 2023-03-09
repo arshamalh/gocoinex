@@ -80,3 +80,12 @@ func (c *FutureDataClient) GetMarketDepthFuture(market string, merge string, lim
 	}
 	return (&MarketDepthFuture{}).Parse(raw_response)
 }
+
+// Latest Transaction in the Market
+func (c *FutureDataClient) GetMarketLatestTransaction(market string, last_id int, limit int) (*MarketLatestTransaction, error) {
+	raw_response, err := c.get("https://api.coinex.com/perpetual/v1/market/deals", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&MarketLatestTransaction{}).Parse(raw_response)
+}
