@@ -113,3 +113,8 @@ func (c *FutureDataClient) PostAdjustLeverage(market string, leverage string, po
 func (c *FutureDataClient) PostEstimatedAmountOfPositionsToBeOpened(market string, price string, side int, timestamp int, windowtime int) {
 
 }
+
+// Asset Query
+func (c *FutureDataClient) GetAssetQuery() {
+
+}

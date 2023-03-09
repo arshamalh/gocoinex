@@ -227,3 +227,19 @@ func (r *EstimatedAmountOfPositionsToBeOpened) Parse(raw_response *http.Response
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type AssetQueryFuture struct {
+	Available     string `json:"available"`     // Available
+	Frozen        string `json:"frozen"`        // Frozen
+	Tranfer       string `json:"tranfer"`       // Available
+	Balance_total string `json:"balance_total"` // Balance
+	Margin        string `json:"margin"`        // Margin
+	Profit_unreal string `json:"profit_unreal"` // Unrealized PNL
+
+}
+
+func (r *AssetQueryFuture) Parse(raw_response *http.Response) (*AssetQueryFuture, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
