@@ -26,3 +26,12 @@ func (c *FutureDataClient) GetPing() (*Ping, error) {
 	}
 	return (&Ping{}).Parse(raw_response)
 }
+
+// System Time
+func (c *FutureDataClient) GetSystemTime() (*SystemTime, error) {
+	raw_response, err := c.get("https://api.coinex.com/perpetual/v1/time", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&SystemTime{}).Parse(raw_response)
+}
