@@ -188,3 +188,8 @@ func (c *FutureDataClient) GetStopOrderStatus(market string, order_id int, times
 func (c *FutureDataClient) GetQueryFinishedOrder(market string, side int, start_time int, end_time int, offset int, limit int, timestamp int, windowtime int) {
 
 }
+
+// Limit Close
+func (c *FutureDataClient) PostLimitClose(market string, position_id int, amount string, price string, effect_type int, option int, client_id string, timestamp int, windowtim int) {
+
+}
