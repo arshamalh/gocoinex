@@ -203,3 +203,8 @@ func (c *FutureDataClient) PostMarketClose(market string, position_id int, amoun
 func (c *FutureDataClient) PostAdjustPositionMargin(market string, amount string, Type int, timestamp int, windowtime int) {
 
 }
+
+// User Positions
+func (c *FutureDataClient) GetUserPositions(market string, timestamp int, windowtime int) {
+
+}
