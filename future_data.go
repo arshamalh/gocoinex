@@ -148,3 +148,8 @@ func (c *FutureDataClient) PostCancelOrderInBatch(market string, order_ids strin
 func (c *FutureDataClient) PostCancelOrder(market string, order_id int, timestamp int, windowtime int) {
 
 }
+
+// Cancel All Orders
+func (c *FutureDataClient) PostCancelAllOrders(market string, side int, timestamp int, windowtime int) {
+
+}
