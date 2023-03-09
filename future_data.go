@@ -89,3 +89,12 @@ func (c *FutureDataClient) GetMarketLatestTransaction(market string, last_id int
 	}
 	return (&MarketLatestTransaction{}).Parse(raw_response)
 }
+
+// Market K-Line
+func (c *FutureDataClient) GetMarketKLine(market string, limit int, Type string) (*MarketKLine, error) {
+	raw_response, err := c.get("https://api.coinex.com/perpetual/v1/market/kline", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&MarketKLine{}).Parse(raw_response)
+}
