@@ -183,3 +183,8 @@ func (c *FutureDataClient) GetQueryPendingStopOrders(market string, side int, cl
 func (c *FutureDataClient) GetStopOrderStatus(market string, order_id int, timestamp int, windowtime int) {
 
 }
+
+// Query Finished Order
+func (c *FutureDataClient) GetQueryFinishedOrder(market string, side int, start_time int, end_time int, offset int, limit int, timestamp int, windowtime int) {
+
+}
