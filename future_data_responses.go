@@ -779,3 +779,49 @@ func (r *QueryUserHistoricalFundingRate) Parse(raw_response *http.Response) (*Qu
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type PositionStopLossSettings struct {
+	Position_id           int     `json:"position_id"`           // Position id
+	Create_time           float64 `json:"create_time"`           // Create time
+	Update_time           float64 `json:"update_time"`           // Update time
+	Market                string  `json:"market"`                // Market name
+	User_id               int     `json:"user_id"`               // User ID
+	Type                  int     `json:"type"`                  // Order type, 1: limit order, 2: market order
+	Side                  int     `json:"side"`                  // 1: Short, 2: Long
+	Amount                string  `json:"amount"`                // Amount
+	Amount_max            string  `json:"amount_max"`            // ATH position amount
+	Amount_max_margin     string  `json:"amount_max_margin"`     // Maximum margin amount
+	Close_left            string  `json:"close_left"`            // Available Amount to Liquidate
+	Open_price            string  `json:"open_price"`            // Average entry price
+	Open_val              string  `json:"open_val"`              // Cumulative opening value
+	Open_val_max          string  `json:"open_val_max"`          // Maximum opening value
+	Open_margin           string  `json:"open_margin"`           // Margin
+	Mainten_margin        string  `json:"mainten_margin"`        // Maintenance Margin Rate
+	Mainten_margin_amount string  `json:"mainten_margin_amount"` // Maintenance margin
+	Margin_amount         string  `json:"margin_amount"`         // Margin, Initial Margin + Margin Call - Reduced Margin
+	Profit_real           string  `json:"profit_real"`           // Realized PNL
+	Profit_clearing       string  `json:"profit_clearing"`       // Unsettled PNL
+	Take_profit_price     string  `json:"take_profit_price"`     // Take-profit price
+	Stop_loss_price       string  `json:"stop_loss_price"`       // Stop-loss price
+	Taker_fee             string  `json:"taker_fee"`             // Taker fee
+	Maker_fee             string  `json:"maker_fee"`             // Maker fee
+	Take_profit_type      int     `json:"take_profit_type"`      // Take-profit price type, 1: transaction price, 3: mark price
+	Stop_loss_type        int     `json:"stop_loss_type"`        // Stop-loss price type, 1: transaction price, 3: mark price
+	Fee_asset             string  `json:"fee_asset"`             // Payment coin deducted as trading fees
+	Deal_asset_fee        string  `json:"deal_asset_fee"`        // Executed trading fee
+	Leverage              string  `json:"leverage"`              // Margin
+	Liq_price             string  `json:"liq_price"`             // Liquidation price, when the liquidation price is greater than 1000000000000, return “Infinity”
+	Bkr_price             string  `json:"bkr_price"`             // Bankruptcy price, when the bankruptcy price is greater than 1000000000000, return “Infinity”
+	Profit_unreal         string  `json:"aprofit_unrea"`         // Unrealized PNL
+	Settle_price          string  `json:"settle_price "`         // Settlement Price
+	Settle_val            string  `json:"ettle_val"`             // Settlement Value
+	Adl_sort              int     `json:"adl_sort"`              // Sort by ADL
+	Total                 int     `json:"total"`                 // Number of accounts with positions
+
+}
+
+func (r *PositionStopLossSettings) Parse(raw_response *http.Response) (*PositionStopLossSettings, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
