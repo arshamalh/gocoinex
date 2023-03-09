@@ -103,3 +103,8 @@ func (c *FutureDataClient) GetMarketKLine(market string, limit int, Type string)
 func (c *FutureDataClient) GetUserTransaction(market string, side int, start_time int, end_time int, offset int, limit int) {
 
 }
+
+// Adjust Leverage
+func (c *FutureDataClient) PostAdjustLeverage(market string, leverage string, position_type int, timestamp int, windowtime int) {
+
+}

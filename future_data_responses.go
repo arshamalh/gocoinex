@@ -206,3 +206,14 @@ func (r *UserTransaction) Parse(raw_response *http.Response) (*UserTransaction, 
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type AdjustLeverage struct {
+	Position_type int    `json:"position_type"` // Position Type
+	Leverage      string `json:"leverage"`      // Margin
+}
+
+func (r *AdjustLeverage) Parse(raw_response *http.Response) (*AdjustLeverage, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
