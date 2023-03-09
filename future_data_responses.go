@@ -49,3 +49,16 @@ func (r *MarketList) Parse(raw_response *http.Response) (*MarketList, error) {
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type PositionLevel struct {
+	Params0 string `json:"params0"` // amount, amount
+	Params1 string `json:"params1"` // leverage, leverage
+	Params2 string `json:"params2"` // mainten margin, maintenance margin rate
+
+}
+
+func (r *PositionLevel) Parse(raw_response *http.Response) (*PositionLevel, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}

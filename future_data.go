@@ -44,3 +44,12 @@ func (c *FutureDataClient) GetMarketList() (*MarketList, error) {
 	}
 	return (&MarketList{}).Parse(raw_response)
 }
+
+// Position Level
+func (c *FutureDataClient) GetPositionLevel() (*PositionLevel, error) {
+	raw_response, err := c.get("https://api.coinex.com/perpetual/v1/market/limit_config", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&PositionLevel{}).Parse(raw_response)
+}
