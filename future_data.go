@@ -237,3 +237,8 @@ func (c *FutureDataClient) GetQueryMarketHistoricalFundingRate(market string, st
 	}
 	return (&QueryMarketHistoricalFundingRate{}).Parse(raw_response)
 }
+
+// Modify order
+func (c *FutureDataClient) PostModifyOrder(market string, order_id int, amount string, price string, timestamp int, windowtime int) {
+
+}

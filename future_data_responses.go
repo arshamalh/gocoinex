@@ -887,3 +887,41 @@ func (r *QueryMarketHistoricalFundingRate) Parse(raw_response *http.Response) (*
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type Modifyorder struct {
+	Order_id         int     `json:"order_id"`         // Order id
+	Position_id      int     `json:"position_id"`      // position id
+	Stop_id          int     `json:"stop_id"`          // Stop order id
+	Market           string  `json:"market"`           // Market name
+	Type             int     `json:"type"`             // Order type, 1: limit order, 2: market order
+	Side             int     `json:"side"`             // 1: Short, 2: Long
+	Effect_type      int     `json:"effect_type"`      // Order effective type, 1: always valid, 2: immediate or cancel, 3: fill or kill
+	User_id          int     `json:"user_id"`          // User ID
+	Create_time      float64 `json:"create_time"`      // Create time
+	Update_time      float64 `json:"update_time"`      // Update time
+	Source           string  `json:"source"`           // Source
+	Price            string  `json:"price"`            // Price
+	Amount           string  `json:"amount"`           // Amount
+	Taker_fee        string  `json:"taker_fee"`        // Taker rate
+	Maker_fee        string  `json:"maker_fee"`        // Maker rate
+	Left             string  `json:"left"`             // Executed
+	Deal_stock       string  `json:"deal_stock"`       // Executed value
+	Deal_fee         string  `json:"deal_fee"`         // Used trading fee
+	Deal_profit      string  `json:"deal_profit"`      // Realized PNL
+	Last_deal_amount string  `json:"last_deal_amount"` // Latest transaction amount
+	Last_deal_price  string  `json:"last_deal_price"`  // Latest transaction price
+	Last_deal_time   int     `json:"last_deal_time"`   // Latest transaction time
+	Last_deal_id     int     `json:"last_deal_id"`     // Latest txid
+	Last_deal_type   int     `json:"last_deal_type"`   // Latest transaction type
+	Last_deal_role   int     `json:"last_deal_role"`   // Latest trading roles
+	Client_id        string  `json:"client_id"`        // Client id
+	Leverage         string  `json:"leverage"`         // Margin
+	Position_type    int     `json:"position_type"`    // Margin type, 1: Isolated, 2: Cross
+
+}
+
+func (r *Modifyorder) Parse(raw_response *http.Response) (*Modifyorder, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
