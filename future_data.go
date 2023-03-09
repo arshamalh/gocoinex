@@ -20,7 +20,7 @@ func (c *FutureDataClient) get(endpoint string, params Map) (*http.Response, err
 
 // Ping/Pong
 func (c *FutureDataClient) GetPing() (*Ping, error) {
-	raw_response, err := c.get("", nil)
+	raw_response, err := c.get("https://api.coinex.com/perpetual/v1/ping", nil)
 	if err != nil {
 		return nil, err
 	}
