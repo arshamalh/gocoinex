@@ -118,3 +118,8 @@ func (c *FutureDataClient) PostEstimatedAmountOfPositionsToBeOpened(market strin
 func (c *FutureDataClient) GetAssetQuery() {
 
 }
+
+// Submit Limit Order
+func (c *FutureDataClient) PostSubmitLimitOrder(market string, side int, amount string, price string, effect_type int, option int, client_id string, timestamp int, windowtime int) {
+
+}
