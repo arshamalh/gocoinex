@@ -198,3 +198,8 @@ func (c *FutureDataClient) PostLimitClose(market string, position_id int, amount
 func (c *FutureDataClient) PostMarketClose(market string, position_id int, amount string, client_id string, timestamp int, windowtime int) {
 
 }
+
+// Adjust Position Margin
+func (c *FutureDataClient) PostAdjustPositionMargin(market string, amount string, Type int, timestamp int, windowtime int) {
+
+}
