@@ -10,7 +10,19 @@ func NewFutureDataClient() *FutureDataClient {
 	return &FutureDataClient{client: &http.Client{}}
 }
 
-// Ping/Pong
-func (c *FutureDataClient) Ping() {
+func (c *FutureDataClient) get(endpoint string, params Map) (*http.Response, error) {
+	request, err := requestMaker(endpoint, params)
+	if err != nil {
+		return nil, err
+	}
+	return c.client.Do(request)
+}
 
+// Ping/Pong
+func (c *FutureDataClient) GetPing() (*Ping, error) {
+	raw_response, err := c.get("", nil)
+	if err != nil {
+		return nil, err
+	}
+	return (&Ping{}).Parse(raw_response)
 }
