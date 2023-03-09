@@ -208,3 +208,8 @@ func (c *FutureDataClient) PostAdjustPositionMargin(market string, amount string
 func (c *FutureDataClient) GetUserPositions(market string, timestamp int, windowtime int) {
 
 }
+
+// Query User Historical Funding Rate
+func (c *FutureDataClient) GetQueryUserHistoricalFundingRate(market string, start_time int, end_time int, offset int, limit int, timestamp int, windowtime int) {
+
+}
