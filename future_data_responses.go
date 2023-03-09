@@ -497,3 +497,33 @@ func (r *OrderStatus) Parse(raw_response *http.Response) (*OrderStatus, error) {
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type QueryPendingStopOrders struct {
+	Order_id    int     `json:"order_id"`    // Order id
+	Market      string  `json:"market"`      // Market name
+	Type        int     `json:"type"`        // Order type, 1: limit order, 2: market order
+	Side        int     `json:"side"`        // 1: sell, 2: buy
+	Effect_type int     `json:"effect_type"` // Order effective type, 1: always valid, 2: immediate or cancel, 3: fill or kill. Default is 1.
+	Stop_type   int     `json:"stop_type"`   // Trigger method 1: by latest transaction price, 2: by index price, 3: by mark price
+	User_id     int     `json:"user_id"`     // User ID
+	Create_time float64 `json:"create_time"` // Create time
+	Update_time float64 `json:"update_time"` // Update time
+	Source      string  `json:"source"`      // Source
+	State       int     `json:"state"`       // The relationship between the stop price of a stop order and the current market price 1: Lower than the price in the current market 2: Higher than the price in the current market
+	Stop_price  string  `json:"stop_price"`  // Stop Price
+	Price       string  `json:"price"`       // Price
+	Amount      string  `json:"amount"`      // Amount
+	Taker_fee   string  `json:"taker_fee"`   // Taker rate
+	Maker_fee   string  `json:"maker_fee"`   // Maker rate
+	Client_id   string  `json:"client_id"`   // Client id
+	Total       int     `json:"total"`       // Number of total records
+	Offset      int     `json:"offset"`      // Offset
+	Limit       int     `json:"limit"`       // Number of records per query
+
+}
+
+func (r *QueryPendingStopOrders) Parse(raw_response *http.Response) (*QueryPendingStopOrders, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
