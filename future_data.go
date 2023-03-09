@@ -153,3 +153,8 @@ func (c *FutureDataClient) PostCancelOrder(market string, order_id int, timestam
 func (c *FutureDataClient) PostCancelAllOrders(market string, side int, timestamp int, windowtime int) {
 
 }
+
+// Cancel Stop Order
+func (c *FutureDataClient) PostCancelStopOrder(market string, order_id int, timestamp int, windowtime int) {
+
+}

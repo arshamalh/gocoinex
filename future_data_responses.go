@@ -394,3 +394,28 @@ func (r *CancelOrder) Parse(raw_response *http.Response) (*CancelOrder, error) {
 	defer raw_response.Body.Close()
 	return r, err
 }
+
+type CancelStopOrder struct {
+	Order_id    int     `json:"order_id"`    // Order id
+	Market      string  `json:"market"`      // Market name
+	Type        int     `json:"type"`        // Order type, 1: limit order, 2: market order
+	Side        int     `json:"side"`        // 1: sell, 2: buy
+	Effect_type int     `json:"effect_type"` // Order effective type, 1: always valid, 2: immediate or cancel, 3: fill or kill.
+	Stop_type   int     `json:"stop_type"`   // Trigger method 1: by latest transaction price, 2: by index price, 3: by mark price
+	User_id     int     `json:"user_id "`    // User ID
+	Create_time float64 `json:"create_time"` // Create time
+	Update_time float64 `json:"update_time"` // Update time
+	Source      string  `json:"source"`      // Source
+	Stop_price  string  `json:"stop_price"`  // Stop Price
+	Price       string  `json:"price"`       // Price
+	Amount      string  `json:"amount"`      // Amount
+	Taker_fee   string  `json:"taker_fee"`   // Taker rate
+	Maker_fee   string  `json:"maker_fee"`   // Maker rate
+	Client_id   string  `json:"client_id"`   // Client id
+}
+
+func (r *CancelStopOrder) Parse(raw_response *http.Response) (*CancelStopOrder, error) {
+	err := json.NewDecoder(raw_response.Body).Decode(r)
+	defer raw_response.Body.Close()
+	return r, err
+}
