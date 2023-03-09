@@ -223,3 +223,8 @@ func (c *FutureDataClient) PostPositionStopLossSettings(market string, position_
 func (c *FutureDataClient) PostPositionTakeProfitSettings(market string, position_id int, stop_type int, take_profit_price string, timestamp int, windowtime int) {
 
 }
+
+// Market Close All
+func (c *FutureDataClient) PostMarketCloseAll(market string, position_id int, timestamp int, windowtime int) {
+
+}
