@@ -8,9 +8,14 @@ import (
 )
 
 const (
-	BaseURL   = "https://api.coinex.com/v1/"
-	UserAgent = "gocoinex"
+	BaseURL        = "https://api.coinex.com/v1/"
+	FuturesBaseURL = "https://api.coinex.com/perpetual/v1/"
+	UserAgent      = "gocoinex"
 )
+
+type Client interface {
+	Do(req *http.Request) (*http.Response, error)
+}
 
 type GeneralResponse struct {
 	Code    int    `json:"code"`
